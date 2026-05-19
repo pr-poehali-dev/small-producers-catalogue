@@ -322,15 +322,36 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 py-10">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-white font-display font-bold text-xs">С</span>
-            </div>
-            <span className="font-display font-bold">Своё</span>
+      <footer className="ornament-border-top border-t border-border/50 pt-8 pb-10 mt-2">
+        <div className="container mx-auto px-4">
+          {/* Ornament row */}
+          <div className="flex items-center justify-center gap-3 mb-6 opacity-40 select-none" aria-hidden>
+            <span className="text-primary text-lg">✦</span>
+            <svg width="120" height="16" viewBox="0 0 120 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 8 Q10 2 20 8 Q30 14 40 8 Q50 2 60 8 Q70 14 80 8 Q90 2 100 8 Q110 14 120 8" stroke="currentColor" strokeWidth="1.5" className="text-primary"/>
+              <circle cx="20" cy="8" r="2" fill="currentColor" className="text-primary"/>
+              <circle cx="60" cy="8" r="2" fill="currentColor" className="text-primary"/>
+              <circle cx="100" cy="8" r="2" fill="currentColor" className="text-primary"/>
+            </svg>
+            <span className="text-primary text-lg">✦</span>
+            <svg width="120" height="16" viewBox="0 0 120 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 8 Q10 2 20 8 Q30 14 40 8 Q50 2 60 8 Q70 14 80 8 Q90 2 100 8 Q110 14 120 8" stroke="currentColor" strokeWidth="1.5" className="text-primary"/>
+              <circle cx="20" cy="8" r="2" fill="currentColor" className="text-primary"/>
+              <circle cx="60" cy="8" r="2" fill="currentColor" className="text-primary"/>
+              <circle cx="100" cy="8" r="2" fill="currentColor" className="text-primary"/>
+            </svg>
+            <span className="text-primary text-lg">✦</span>
           </div>
-          <p className="text-muted-foreground text-sm">Каталог российских производителей · 2024</p>
+
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
+                <span className="text-white font-display font-bold text-xs">С</span>
+              </div>
+              <span className="font-display font-bold">Своё</span>
+            </div>
+            <p className="text-muted-foreground text-sm">Каталог российских производителей · 2024</p>
+          </div>
         </div>
       </footer>
     </div>
