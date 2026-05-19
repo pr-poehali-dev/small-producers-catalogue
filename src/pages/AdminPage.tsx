@@ -14,10 +14,12 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
   const [loginVal, setLoginVal] = useState('');
   const [passVal, setPassVal] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [showPass, setShowPass] = useState(false);
 
   const handleAdminLogin = () => {
-    if (loginVal === ADMIN_LOGIN && passVal === ADMIN_PASSWORD) {
+    if (loginVal.trim() === ADMIN_LOGIN && passVal.trim() === ADMIN_PASSWORD) {
       setAuthed(true);
+      setLoginError('');
     } else {
       setLoginError('Неверный логин или пароль');
     }
@@ -74,8 +76,13 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
               </div>
               <div>
                 <label className="text-sm font-medium text-muted-foreground mb-1.5 block">Пароль</label>
-                <input type="password" value={passVal} onChange={e => setPassVal(e.target.value)} className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-primary transition-colors"
-                  onKeyDown={e => e.key === 'Enter' && handleAdminLogin()} />
+                <div className="relative">
+                  <input type={showPass ? 'text' : 'password'} value={passVal} onChange={e => setPassVal(e.target.value)} className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-primary transition-colors pr-10"
+                    onKeyDown={e => e.key === 'Enter' && handleAdminLogin()} />
+                  <button type="button" onClick={() => setShowPass(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                    <Icon name={showPass ? 'EyeOff' : 'Eye'} size={16} />
+                  </button>
+                </div>
               </div>
               <button onClick={handleAdminLogin} className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors">
                 Войти

@@ -31,46 +31,51 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium mb-8 animate-fade-in">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Сделано в России
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium mb-8 animate-fade-in">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            Сделано в России
+          </div>
+
+          <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16">
+            {/* Left: big title */}
+            <div className="flex-shrink-0 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <h1 className="font-display text-7xl md:text-9xl font-bold leading-none">
+                <span className="gradient-text">СВОЁ</span>
+              </h1>
+              <div className="flex gap-8 mt-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                {stats.map(stat => (
+                  <div key={stat.label}>
+                    <p className="font-display text-3xl font-bold text-primary">{stat.value}+</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <h1 className="font-display text-6xl md:text-8xl font-bold leading-none mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <span className="gradient-text">СВОЁ</span>
-              <br />
-              <span className="text-foreground/90 text-4xl md:text-5xl font-medium">производители России</span>
-            </h1>
-
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-2xl animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Собираем малых производителей и мастеров со всей страны в едином пространстве.
-              Без маркетплейсов с их грабительскими тарифами, без заблокированных соцсетей —
-              <strong className="text-foreground"> напрямую от мастера к покупателю</strong>.
-            </p>
-
-            <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <button
-                onClick={() => document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
-              >
-                Смотреть каталог
-              </button>
-              <button
-                onClick={() => onNavigate('manufacturer-cabinet')}
-                className="px-8 py-4 border border-border font-semibold rounded-xl hover:border-primary hover:text-primary transition-all"
-              >
-                Я производитель →
-              </button>
-            </div>
-
-            <div className="flex gap-8 mt-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              {stats.map(stat => (
-                <div key={stat.label}>
-                  <p className="font-display text-3xl font-bold text-primary">{stat.value}+</p>
-                  <p className="text-sm text-muted-foreground mt-0.5">{stat.label}</p>
-                </div>
-              ))}
+            {/* Right: description + buttons */}
+            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <p className="font-display text-2xl md:text-3xl font-semibold text-foreground/80 mb-4 leading-tight">
+                Производители России
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
+                Собираем малых производителей и мастеров со всей страны в едином пространстве.
+                Без маркетплейсов с их грабительскими тарифами, без заблокированных соцсетей —
+                <strong className="text-foreground"> напрямую от мастера к покупателю</strong>.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button
+                  onClick={() => document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
+                >
+                  Смотреть каталог
+                </button>
+                <button
+                  onClick={() => onNavigate('manufacturer-cabinet')}
+                  className="px-8 py-4 border border-border font-semibold rounded-xl hover:border-primary hover:text-primary transition-all"
+                >
+                  Я производитель →
+                </button>
+              </div>
             </div>
           </div>
         </div>

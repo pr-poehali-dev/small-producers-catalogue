@@ -23,9 +23,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             <span className="font-display text-xl font-bold tracking-wide">Своё</span>
           </button>
 
-          <p className="hidden md:block text-sm text-muted-foreground border-l border-border pl-4">
-            производители России
-          </p>
         </div>
 
         <div className="hidden md:flex items-center gap-6">

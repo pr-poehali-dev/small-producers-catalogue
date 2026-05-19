@@ -181,13 +181,16 @@ export default function ManufacturerCabinet({ onNavigate }: ManufacturerCabinetP
 
           <div className="bg-card border border-border/50 rounded-2xl p-6 shadow-sm">
             <div className="flex gap-1 bg-muted rounded-xl p-1 mb-6">
-              {(['login', 'register'] as AuthTab[]).map(t => (
-                <button key={t} onClick={() => { setAuthTab(t); setError(''); }}
-                  className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all ${authTab === t ? 'bg-card shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
-                >
-                  {t === 'login' ? 'Войти' : 'Зарегистрироваться'}
-                </button>
-              ))}
+              <button onClick={() => { setAuthTab('login'); setError(''); setSuccess(''); }}
+                className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all ${authTab === 'login' ? 'bg-card shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+              >
+                Войти
+              </button>
+              <button onClick={() => { setAuthTab('register'); setError(''); setSuccess(''); }}
+                className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all ${authTab === 'register' ? 'bg-card shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+              >
+                Новый аккаунт
+              </button>
             </div>
 
             {success && (
@@ -212,7 +215,7 @@ export default function ManufacturerCabinet({ onNavigate }: ManufacturerCabinetP
                 disabled={loading}
                 className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors disabled:opacity-60"
               >
-                {loading ? 'Загрузка...' : (authTab === 'login' ? 'Войти' : 'Создать аккаунт')}
+                {loading ? 'Загрузка...' : (authTab === 'login' ? 'Войти' : 'Зарегистрироваться')}
               </button>
             </div>
 
