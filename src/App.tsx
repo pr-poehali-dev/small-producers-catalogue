@@ -6,9 +6,10 @@ import HomePage from '@/pages/HomePage';
 import CatalogPage from '@/pages/CatalogPage';
 import ManufacturerPage from '@/pages/ManufacturerPage';
 import ManufacturerCabinet from '@/pages/ManufacturerCabinet';
+import VisitorCabinet from '@/pages/VisitorCabinet';
 import AdminPage from '@/pages/AdminPage';
 
-type Page = 'home' | 'catalog' | 'category' | 'region' | 'manufacturer' | 'manufacturer-cabinet' | 'admin';
+type Page = 'home' | 'catalog' | 'category' | 'region' | 'manufacturer' | 'manufacturer-cabinet' | 'visitor-cabinet' | 'admin';
 
 interface NavState {
   page: Page;
@@ -37,6 +38,8 @@ function AppContent() {
         return <ManufacturerPage manufacturerId={nav.params.id} onNavigate={handleNavigate} />;
       case 'manufacturer-cabinet':
         return <ManufacturerCabinet onNavigate={handleNavigate} />;
+      case 'visitor-cabinet':
+        return <VisitorCabinet onNavigate={handleNavigate} />;
       case 'admin':
         return <AdminPage onNavigate={handleNavigate} />;
       default:

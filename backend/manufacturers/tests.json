@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "Get approved manufacturers list",
+      "method": "GET",
+      "path": "/?action=list",
+      "expectedStatus": 200,
+      "expectedBody": [],
+      "bodyMatcher": "partial"
+    }
+  ]
+}

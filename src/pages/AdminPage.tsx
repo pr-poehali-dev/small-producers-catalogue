@@ -6,7 +6,23 @@ interface AdminPageProps {
   onNavigate: (page: string, params?: Record<string, string>) => void;
 }
 
+const ADMIN_LOGIN = 'admin';
+const ADMIN_PASSWORD = '6323183';
+
 export default function AdminPage({ onNavigate }: AdminPageProps) {
+  const [authed, setAuthed] = useState(false);
+  const [loginVal, setLoginVal] = useState('');
+  const [passVal, setPassVal] = useState('');
+  const [loginError, setLoginError] = useState('');
+
+  const handleAdminLogin = () => {
+    if (loginVal === ADMIN_LOGIN && passVal === ADMIN_PASSWORD) {
+      setAuthed(true);
+    } else {
+      setLoginError('Неверный логин или пароль');
+    }
+  };
+
   const [manufacturers, setManufacturers] = useState<Manufacturer[]>(MANUFACTURERS);
   const [filterStatus, setFilterStatus] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
   const [selected, setSelected] = useState<Manufacturer | null>(null);
@@ -38,6 +54,38 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
   }[status] || status);
 
   const category = (id: string) => CATEGORIES.find(c => c.id === id);
+
+  if (!authed) {
+    return (
+      <div className="min-h-screen pt-20 bg-background flex items-center justify-center px-4">
+        <div className="w-full max-w-sm">
+          <div className="text-center mb-8">
+            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Icon name="ShieldCheck" size={26} className="text-primary" />
+            </div>
+            <h1 className="font-display text-3xl font-bold">Вход для администратора</h1>
+          </div>
+          <div className="bg-card border border-border/50 rounded-2xl p-6 shadow-sm">
+            {loginError && <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">{loginError}</div>}
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-muted-foreground mb-1.5 block">Логин</label>
+                <input type="text" value={loginVal} onChange={e => setLoginVal(e.target.value)} className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-primary transition-colors" placeholder="admin" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-muted-foreground mb-1.5 block">Пароль</label>
+                <input type="password" value={passVal} onChange={e => setPassVal(e.target.value)} className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-primary transition-colors"
+                  onKeyDown={e => e.key === 'Enter' && handleAdminLogin()} />
+              </div>
+              <button onClick={handleAdminLogin} className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors">
+                Войти
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen pt-20 bg-background">

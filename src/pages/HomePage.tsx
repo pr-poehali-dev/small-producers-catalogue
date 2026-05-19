@@ -92,30 +92,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      {/* Why section */}
-      <section className="py-20 border-t border-border/50">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display text-4xl font-bold text-center mb-4">Почему <span className="gradient-text">Своё</span>?</h2>
-          <p className="text-muted-foreground text-center mb-14 max-w-xl mx-auto">В эпоху роста тарифов маркетплейсов и блокировок соцсетей мастера теряют доступ к покупателям</p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: 'TrendingDown', title: 'Без комиссий', desc: 'Маркетплейсы берут до 30% с каждой продажи. Здесь производители публикуются бесплатно и общаются с покупателями напрямую.', color: 'text-green-400' },
-              { icon: 'Shield', title: 'Проверенные мастера', desc: 'Каждый производитель проходит модерацию администратором. Только настоящие российские мастера и производители.', color: 'text-primary' },
-              { icon: 'Map', title: 'Вся страна', desc: 'От Калининграда до Владивостока. Находите уникальные изделия из любого региона России — с контактами и историей бренда.', color: 'text-accent' },
-            ].map((item, i) => (
-              <div key={i} className="bg-card border border-border/50 rounded-2xl p-6 card-hover">
-                <div className={`w-12 h-12 rounded-xl bg-muted flex items-center justify-center mb-4 ${item.color}`}>
-                  <Icon name={item.icon} fallback="Star" size={24} />
-                </div>
-                <h3 className="font-display text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Masters section */}
       <section id="catalog-section" className="py-20 border-t border-border/50 overflow-hidden">
         <div className="container mx-auto px-4">
@@ -343,14 +319,20 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <span className="text-primary text-lg">✦</span>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
                 <span className="text-white font-display font-bold text-xs">С</span>
               </div>
               <span className="font-display font-bold">Своё</span>
             </div>
-            <p className="text-muted-foreground text-sm">Каталог российских производителей · 2024</p>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+              <button onClick={() => onNavigate('manufacturer-cabinet')} className="hover:text-primary transition-colors">Кабинет мастера</button>
+              <span className="opacity-30">·</span>
+              <button onClick={() => onNavigate('admin')} className="hover:text-primary transition-colors">Администратор</button>
+              <span className="opacity-30">·</span>
+              <span>Каталог российских производителей · 2024</span>
+            </div>
           </div>
         </div>
       </footer>

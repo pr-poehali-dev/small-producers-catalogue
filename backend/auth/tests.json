@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Register manufacturer",
+      "method": "POST",
+      "path": "/?action=register",
+      "body": {"email": "test_mfr_auto3@example.com", "password": "test123", "role": "manufacturer"},
+      "expectedStatus": 200,
+      "expectedBody": {"role": "manufacturer"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Login with unconfirmed email",
+      "method": "POST",
+      "path": "/?action=login",
+      "body": {"email": "test_mfr_auto3@example.com", "password": "test123"},
+      "expectedStatus": 403,
+      "expectedBody": {"error": "Email не подтверждён. Проверьте почту."},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

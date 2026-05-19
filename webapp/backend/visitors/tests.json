@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "Get favorites unauthorized",
+      "method": "GET",
+      "path": "/favorites",
+      "expectedStatus": 401,
+      "expectedBody": {"error": "Не авторизован"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
