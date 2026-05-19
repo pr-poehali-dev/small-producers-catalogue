@@ -99,7 +99,12 @@ export default function ProductCard({ product, manufacturer, onManufacturerClick
         <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors line-clamp-2">{product.name}</h3>
         <div className="flex items-center gap-1 text-sm text-muted-foreground">
           <Icon name="Store" size={13} />
-          <span>{manufacturer.brand}</span>
+          <button
+            onClick={e => { e.stopPropagation(); onManufacturerClick(manufacturer.id); }}
+            className="hover:text-primary hover:underline transition-colors"
+          >
+            {manufacturer.brand}
+          </button>
           <span className="mx-1">·</span>
           <Icon name="MapPin" size={13} />
           <span>{manufacturer.region}</span>
