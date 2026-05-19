@@ -221,6 +221,82 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
+      {/* Masters section */}
+      <section className="py-20 border-t border-border/50 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">Наши мастера</p>
+              <h2 className="font-display text-4xl font-bold">Люди за брендами</h2>
+            </div>
+            <button
+              onClick={() => onNavigate('catalog')}
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 self-start md:self-auto"
+            >
+              Все производители <Icon name="ArrowRight" size={15} />
+            </button>
+          </div>
+
+          <div className="flex gap-5 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide" style={{ scrollSnapType: 'x mandatory' }}>
+            {approvedManufacturers.map((m, i) => {
+              const cat = CATEGORIES.find(c => c.id === m.category);
+              return (
+                <button
+                  key={m.id}
+                  onClick={() => onNavigate('manufacturer', { id: m.id })}
+                  className="flex-shrink-0 w-72 bg-card border border-border/50 rounded-2xl overflow-hidden card-hover text-left group animate-fade-in"
+                  style={{ animationDelay: `${i * 0.08}s`, scrollSnapAlign: 'start' }}
+                >
+                  {/* Top image strip */}
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={m.photo}
+                      alt={m.brand}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                    {/* Category badge */}
+                    <span className="absolute top-3 right-3 px-2 py-1 bg-black/50 backdrop-blur-sm text-white text-xs rounded-lg">
+                      {cat?.emoji} {cat?.label}
+                    </span>
+                  </div>
+
+                  {/* Avatar overlap */}
+                  <div className="relative px-5 pb-5">
+                    <div className="flex items-end justify-between -mt-6 mb-3">
+                      <div className="w-14 h-14 rounded-2xl border-2 border-card bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-black/30 flex-shrink-0">
+                        <span className="font-display font-bold text-white text-xl">
+                          {m.brand[0]}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2.5 py-1.5 rounded-full mb-1">
+                        <Icon name="MapPin" size={11} />
+                        {m.region}
+                      </div>
+                    </div>
+
+                    <p className="font-display font-semibold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">
+                      {m.brand}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                      {m.description}
+                    </p>
+
+                    <div className="mt-4 pt-4 border-t border-border/50 flex items-center justify-between text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Icon name="Package" size={12} />
+                        {m.products.length} {m.products.length === 1 ? 'товар' : 'товара'}
+                      </span>
+                      <span className="text-primary font-medium group-hover:underline">Смотреть →</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* CTA for manufacturers */}
       <section className="py-20 border-t border-border/50">
         <div className="container mx-auto px-4">
